@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Contact page</title>
+       <style>
+    body  {
+    background-image: url("pic1.png");
+    background-size: cover;   
+ 	  background-repeat: no-repeat;
+    }
+    #contact {
+		position: absolute;
+		left: 600px;
+		top: 150px;
+		width: 834px;
+		height: fit-content;
+		text-align: left;
+		font-family: Segoe UI;
+		font-size: 35px;
+		color: rgba(255,255,255,1);
+    }
+    </style>
+
+</head>
+
+<body onload="navText()">
+<div id="contact">
+    <pre>
+        Address : Ostra storgatan 64 , Jonkoping
+
+        Phone number : +40756436235
+
+        Email : dev_one@gmail.com
+    </pre>
+</div>
+
+
+ <script>
+    function navText() {
+      var check = document.getElementsByClassName("text_selected");
+      if(check.length > 0){
+      document.getElementsByClassName("text_selected")[0].className="text_unselected";
+      }
+
+      document.getElementsByClassName("text_unselected")[1].className="text_selected";
+      document.getElementsByClassName("undrln1")[0].className="undrln";
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<html>
+    <head>
+            <title>{{user.name}}</title>
+            <link rel="shortcut icon" type="image/x-icon" href="./images/Play.png" />
+
+
+        <style>
+            .hvr:hover .image {
+                opacity: 0.3;
+            }
+
+            .hvr:hover .middle {
+                opacity: 1;
+            }
+            .prf{
+            width:fit-content; 
+            display:inline-flex;
+            text-indent: 30px;
+            margin-top:50px; 
+            margin-left: 50px;
+            }
+
+            .nav_item{
+            font-size:30px;
+            font-family: Segoe UI;
+            color: rgba(255,255,255,1);            
+            border-bottom:solid 4px rgba(0,255,238,1);
+            border-radius: 10px;
+            }
+
+            .image {
+            opacity: 1;
+            display: block;
+            width: fit-content;
+            height: fit-content;
+            transition: .5s ease;
+            backface-visibility: hidden;
+
+            }
+        </style>
+    </head>
+
+
+    <body onload="navText()">
+
+        {{!-- User's profile picture  , name and details --}}
+    <div class="scroll" style="width: 84vw; overflow-x: hidden; ">
+        <div>
+        {{#if user}}
+        <div class="prf">
+            <img src=/{{user.picture}} id="profilePicSquare" style="width: 300px; height:300px;">
+            <span id="txt">{{user.name}}</span>
+            {{#if playlists}}
+            <span id="txt" style="position: relative; top:120px; left:-120px"  >{{playlists.length}} Playlists</span>
+            <span id="txt" style="position: relative; top:250px; left:-300px">{{songs.length}} Songs</span>
+            {{/if}}
+        </div>
+        {{else}}
+            <h1>Not found</h1>
+            <p>No user with that id.</p>
+        {{/if}}
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        {{!-- Nav menu --}}
+        <nav style="text-indent: 50px;">
+            <span id="1" class="nav_item" onclick="chg2()">Shared Playlists</span>
+            <span id="2" class="nav_item" style="position: relative; left:120px; border:hidden;" onclick="chg1()">Songs</span>
+        </nav> 
+
+
+        {{!-- Playlists & Songs --}}
+        <div id="plst" style="visibility: visible;position:relative; ">
+
+            {{#if errorOcurred}}
+                <p>Internal server error, try again later!</p>
+            {{else}}
+                
+                {{#if playlists.length}}
+                    {{!-- Displaying the playlists --}}
+                    {{#each playlists}}
+                        <div class="hvr prf"> 
+                          <a href="/home/{{id}}">
+                          <img src=/{{picture}} id="profilePicSquare" class="image"> 
+                          <span id="txt">{{name}}</span> 
+                          </a>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <p>There are no playlists.</p>
+                {{/if}}
+                
+            {{/if}}
+
+            
+        </div>
+
+
+
+        <div id="sngs" style="visibility: hidden; position:relative; top:-250px ">
+            {{!-- Top bar All songs and number os songs --}}
+            <div style=" position:relative; left:50px; width:1510;">
+                <div style=" max-width:fit-content;float:left;"><span id="txt">All songs</span> </div>
+                <div style=" max-width:fit-content; float:right;" ><span id="txt" > Songs</span></div>
+            </div>
+
+            {{!-- Divider line --}}
+            <svg width="fit-content" height="2px" style="position: relative; left:50px; top:5px;">
+                <line x1="0" y1="0" x2="1510" y2="0" style="stroke:#FFFFFF;stroke-width:2" />
+            </svg>
+
+            {{!-- Identifiers for tracks --}}
+            <div style="display:flex; position:relative; left:50px; width:1510;">
+                <div style=" max-width:fit-content;"><span  class="smg" >Track Name</span> </div>
+                <div style=" max-width:fit-content; margin:auto;"><span class="smg" >Artist</span></div>
+                <div style=" max-width:fit-content;"><span class="smg" >Length</span></div>
+            </div>
+
+            {{#if errorOcurred}}
+                <p>Internal server error, try again later!</p>
+            {{else}}
+                
+                {{#if songs.length}}
+                    {{!-- Displaying the songs --}}
+                    <ul>
+                    {{#each songs}}
+
+                    <div class="hvr" style="display:flex; position:relative; border-bottom: solid 1px gray; width:1510;">
+                        <div style="width:150px;"><span  class="sng" > {{name}}</span> </div>
+                        <div style=" max-width:fit-content; margin:auto; "><span class="sng" >{{artist}}</span></div>                        
+                        <div style=" max-width:fit-content;"> <span class="sng" >{{length}}</span></div>
+                     </div>
+                        
+                    {{/each}}
+                    </ul>
+                {{else}}
+                    <p>There are no songs.</p>
+                {{/if}}
+                
+            {{/if}}
+
+
+        </div>
+    </div>
+
+    <script>
+        function navText() {
+        document.getElementsByClassName("text_selected")[0].className="text_unselected";
+        document.getElementsByClassName("text_unselected")[3].className="text_selected";
+        }
+
+        function chg1(){
+           document.getElementById("1").style.border = "hidden";
+           document.getElementById("plst").style.visibility = "hidden";
+           document.getElementById("2").style.borderBottom = "solid 4px rgba(0,255,238,1)";
+           document.getElementById("sngs").style.visibility = "visible";
+
+        }
+
+        function chg2(){
+           document.getElementById("2").style.border = "hidden";
+           document.getElementById("1").style.borderBottom = "solid 4px rgba(0,255,238,1)";
+           document.getElementById("plst").style.visibility = "visible";
+           document.getElementById("sngs").style.visibility = "hidden";
+        }
+    </script>
+    </body>
+</html>
+
+
+
+

@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <title>Playlists</title>
+
+</head>
+
+
+<body>
+
+
+<div class="scroll" style="width: 84vw; overflow-x: hidden; ">
+<br>
+<br>
+
+<div class="hvr prf"> 
+    <a href="/home/create">
+    <img src= "https://img.icons8.com/carbon-copy/100/000000/plus-math--v2.png" id="profilePicSquare" class="image" style="background-color: rgba(83, 177, 177, 0.774);"> 
+    <span id="txt">New playlist</span> 
+    </a>
+</div>
+
+
+{{#if errorOcurred}}
+                <p>Internal server error, try again later!</p>
+            {{else}}
+                
+                {{#if playlists.length}}
+                    {{!-- Displaying the playlists --}}
+                    {{#each playlists}}
+                        <div class="hvr prf"> 
+                          <a href="/home/{{id}}">
+                          <img src={{picture}} id="profilePicSquare" class="image"> 
+                          <span id="txt">{{name}}</span>
+
+                          </a>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <p>There are no playlists.</p>
+                {{/if}}
+                
+            {{/if}}
+
+</div>
+
+</body>
+
+
+</html>

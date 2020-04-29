@@ -1,0 +1,84 @@
+<html>
+<head>
+<link rel="stylesheet" , href="style.css">
+
+     <style>
+    body  {
+    background-image: url("umf.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    }    
+    
+    </style>
+</head>
+
+<body >
+    {{!-- Sign up form --}}
+
+    <form style="position:absolute; left: 950px; top:100px;" action="" method="POST">
+
+    <input id="form_box" style="width:521px; height:58px;" type="text"  placeholder="Username" name="name" value="{{name}}">
+    <br>  <br>  <br>  <br>
+    <input id="form_box" style="width:521px; height:58px;" type="email"  placeholder="Email" name="email" value="{{email}}">
+    <br>  <br>  <br>  <br>
+    <input id="form_box" class="psd" style="width:521px; height:58px;" type="password"  placeholder="Password" name="password" value="{{password}}">
+    <br>  <br>  <br>  <br>
+    <input id="form_box" class="psd" style="width:521px; height:58px;" type="password"  placeholder="Confirm Password" name="pass2" value="{{pass2}}">
+
+
+    <span id="txt">Profile picture : </span> <input  class="custom-file-input" type="file" width="50px" height="50px;"  name="picture" value="{{picture}}">
+
+    <button type = "submit" style="position:absolute; left: 170; top: 500px; background-color: transparent;  box-shadow: -12px -12px 8px 0 rgba(255,255,255,  0.5) , 12px 12px 8px 0 rgba(0 , 0 , 0, .5)" id="btn" > <a  style="color: white; font-weight:bold;">Sign up</a> </button>
+
+    </form>
+    <div style="position:relative; left:950px; top:550px;">
+    <input type="checkbox" onclick="myFunction()" style="width: 25px; height:25px;"><span id="txt" style="font-size: 25px; color:black;">Show Password </span>
+    </div>
+
+    {{!-- Sign up and Log In buttons --}}
+    <span id="text"  style="position:absolute; left: 1020; top: 700px; color:white; white-space:nowrap" > Already have an account?</span>
+    <br>
+    <a  class="undrln"  style="position:absolute; left: 1150; top: 750px; width:max-content;" href="/">Sign in!</a>
+    
+
+
+
+
+
+
+{{#if errors.length}}
+    <div style="position: relative; top:420px; left:-300px;">
+	<p id="txt">Fix the following validation errors:</p>
+	<ul id="txt">
+		{{#each errors}}
+			<li >{{this}}</li>
+		{{/each}}
+	</ul>
+    </div>
+{{/if}}
+
+
+
+
+<script>
+function myFunction() {
+  var x = document.getElementsByClassName("psd")[0];
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+
+  var x = document.getElementsByClassName("psd")[1];
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+
+</body>
+</html>

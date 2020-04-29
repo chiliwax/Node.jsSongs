@@ -1,0 +1,105 @@
+<html>
+<head>
+    <link rel="stylesheet" , href="/style.css">
+	<link rel="shortcut icon" type="image/x-icon" href="Play.png" />
+    {{!-- <title>Playa</title> --}}
+	<style>
+		body {
+			overflow-y:hidden;
+			overflow-x:hidden;
+		}
+
+
+		.lgout{
+			border: none;
+			background: transparent;
+			cursor: pointer;
+			font-family: Segoe UI;
+    		font-size: 35px;
+    		color: rgba(255,255,255,1);
+			position: absolute;
+			left: 25px;
+		}
+	</style>
+
+
+
+</head>
+
+
+<body>
+
+<div>
+	{{!-- Top Bar --}}
+	<svg class="bar" style="left: 300px; width: 100%; height: 70;">
+		<rect fill="rgba(115,115,115,1)"  width="200%" height="70">	
+		</svg>
+	
+	<div id="top-text" style="left: 1544px; top: 14px;">
+		<a class="text_unselected" style="font-size: 30px;" href = "/about">ABOUT</a>
+	</div>
+	
+	<div id="top-text" style="left: 1735px; top: 14px;">
+		<a class="text_unselected" style="font-size: 30px;" href="/contact">CONTACT</a>
+	</div>
+
+	
+</div>
+
+
+{{!-- Profile dropdown --}}
+<div class="dropdown">
+  <button class="dropbtn"> 
+	  <img style="left: 14px; top: 3px;"  id="profilePicSmall" src="/{{account.picture}}"> 
+	  <span id="name" style=" left: 100px; top: 10px;"> {{account.name}}  </span> 
+  </button>
+
+  <div class="dropdown-content" style="position: absolute; top: 70px;" >
+  <a id="txt" href="/own_profile"> Profile </a>
+  <a id="txt" href="/"><form action="logout" method="post"> <input type="submit" value="Log out" class="lgout"> </input></form> </a>
+  </div>
+
+</div>
+
+
+
+
+{{!-- Side bar with playlists , users and songs --}}
+<div>
+
+	<svg class="side_bar_rect">
+				<rect fill="rgba(42,42,42,1)" id="side_bar_rect" rx="0" ry="0" x="0" y="0" width="300" height="550%">
+				</rect>
+	</svg>
+
+	<div>
+		<a class="text_selected" style="left: 14px;  top: 124px;" href="/home"><span>PLAYLISTS</span></a>  
+	</div>
+
+	<div >
+		<a  class="text_unselected" style="left: 14px;  top: 192px;" href="/users"  ><span>USERS</span> </a>
+	</div>
+
+	<div >
+		<a class="text_unselected" style="left: 14px;  top: 260px;" href="/songs"><span>SONGS</span> </a>
+	</div>
+</div>
+
+<main id="content" style="position:absolute;">
+	{{{body}}}
+</main>
+
+{{!-- Player (if possible) --}}
+<div id="player">
+		<svg class="player_bg">
+			<rect fill="rgba(42,42,42,1)" id="player_bg" rx="0" ry="0" x="0" y="0" width="700%" height="90"> 
+				
+			</rect>
+			<audio controls>
+					<source src="E:/Music/Rec/Losing it one more time (1).mp3" type="audio/mpeg">
+				</audio>
+		</svg>
+</div>
+
+</body>
+</html>

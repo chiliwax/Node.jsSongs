@@ -1,0 +1,124 @@
+<html>
+    <head>
+          <title>Playlist: {{playlist.name}} </title>
+
+
+        <style>
+             ul {
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+           
+
+            .hvr:hover{
+                background-color: #909090;
+            }
+
+            .opt{
+                font-size:20px;
+                font-family: Segoe UI;
+                color: white;
+            }
+
+            .del {
+                border: none;
+                background-color: transparent;
+            }
+        </style>
+
+        
+    </head>
+
+    <body>
+
+    <div class="scroll" style="width: 84vw; overflow-x: hidden; ">
+
+
+
+
+            <div style="position: absolute; top:90px; width:fit-content; height:fit-content;">
+            <form action="" method="POST">
+                    <button type="submit"  class ="del"><img src="/delete.png" style="height: 40px; width:40px; cursor:pointer;" > </button>
+            </form>
+            </div>
+
+
+
+ {{!-- Top bar All songs and number os songs --}}
+            <div style=" position:relative; left:50px; width:1510;">
+                
+                <div style=" max-width:fit-content;float:left; margin-top:50px;"><span id="txt">{{playlist.name}}</span> </div>
+                <div style=" max-width:fit-content; float:left; margin-left:600px; margin-top:50px;" ><span id="txt" >{{songs.length}} Songs</span></div>
+                <div style=" max-width:fit-content;float:right;"><span id="txt"><img src=/{{playlist.picture}}  id="profilePicSquare" style="width: 100px; height:100px;" /> </div>
+
+            </div>
+
+            {{!-- Divider line --}}
+            <svg width="fit-content" height="2px" style="position: relative; left:50px; top:5px;">
+                <line x1="0" y1="0" x2="1510" y2="0" style="stroke:#FFFFFF;stroke-width:2" />
+            </svg>
+
+            {{!-- Identifiers for tracks --}}
+            <div style="display:flex; position:relative; left:50px; width:1510;">
+                <div style=" max-width:fit-content;"><span  class="smg" >Track Name</span> </div>
+                <div style=" max-width:fit-content; margin:auto;"><span class="smg" >Artist</span></div>
+                <div style=" max-width:fit-content;"><span class="smg" >Length</span> </div>
+                
+            </div>    
+
+
+
+    {{#if errorOcurred}}
+                <p>Internal server error, try again later!</p>
+            {{else}}
+                {{#if songs.length}}
+                    {{!-- Displaying the songs --}}
+                    <ul>
+                    {{#each songs}}
+
+                    <div class="hvr" style="display:flex; position:relative; left:50px; border-bottom: solid 1px gray; width:1510;">
+                        <div style="width:150px;"><span  class="sng" > {{name}}</span> </div>
+                        <div style=" max-width:fit-content; margin:auto; "><span class="sng" >{{artist}}</span></div>
+
+                        <form action="delsong" method="POST">
+                            <input  style="width:0px; height:0px; position:absolute; top:0px; visibility:hidden" type="text" name="songID" value="{{id}}">
+                            <input  style="width:0px; height:0px; position:absolute; top:0px; visibility:hidden" type="text" name="playlistID" value="{{../playlist.id}}">
+                            <button type="submit"  class ="del" ><img src="/del.png" style="position:absolute; right:20%; cursor:pointer;"> </button>
+                        </form>
+
+                        <div style=" max-width:fit-content;"><span class="sng" >{{length}}</span></div>
+                     </div>
+                        
+                    {{/each}}
+                    </ul>
+                {{else}}
+                    <p>There are no songs.</p>
+                {{/if}}
+                
+            {{/if}}
+
+            <div style="visibility: hidden;"  id = "pula">{{account.id}}</div>
+            <div  style="visibility: hidden;" id = "pula2">{{playlist.owner_id}}</div>
+
+
+
+
+    </div>
+    <script>
+        var accountID = document.getElementById('pula').innerHTML
+        var owner = document.getElementById('pula2').innerHTML
+
+        if(accountID !== owner) {
+            document.getElementsByClassName("del")[0].style.visibility = "hidden";
+            var x = document.getElementsByClassName('del');
+
+            var i;
+            for (i = 0; i < x.length; i++) {
+                  x[i].style.visibility = "hidden";
+            }           
+        }
+    </script>
+
+    </body>
+</html>

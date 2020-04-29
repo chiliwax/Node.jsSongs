@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Personal Profile</title>
+    </head>
+    <body onload="navText()">
+    <div class="scroll">
+
+        <img id="profilePicBig" style="left:500px; top:50px;"   src="/{{account.picture}}"> 
+        <pre id="txt" style="position:relative; width:fit-content; height:fit-content; left: 850px; top:-300px;" > {{account.name}}</pre>
+        <pre id="txt" style="position:relative; width:fit-content; height:fit-content; left: 850px; top:-250px;" > {{playlists.length}} Playlists</pre>
+        <pre id="txt" style="position:relative; width:fit-content; height:fit-content; left: 850px; top:-200px; margin:0px;" > {{songs.length}} Songs</pre>
+
+
+        <div style="position: relative; top: -20px">
+            {{#if errorOcurred}}
+                        <p>Internal server error, try again later!</p>
+                    {{else}}
+                        
+                        {{#if playlists.length}}
+                            {{!-- Displaying the playlists --}}
+                            {{#each playlists}}
+                                <div class="hvr prf"> 
+                                <a href="/home/{{id}}">
+                                <img src={{picture}} id="profilePicSquare" class="image"> 
+                                <span id="txt">{{name}}</span>
+
+                                </a>
+                                </div>
+                            {{/each}}
+                        {{else}}
+                            <p>There are no playlists.</p>
+                        {{/if}}
+                        
+            {{/if}}
+
+        </div>       
+    </div>
+        
+    <script>
+    function navText() {
+      document.getElementsByClassName("text_selected")[0].className="text_unselected";
+
+    }
+    </script>
+    </body>
+</html>

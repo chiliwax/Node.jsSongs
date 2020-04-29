@@ -1,0 +1,44 @@
+<head>
+<link rel="stylesheet" , href="style.css">
+
+
+     <style>
+    body  {
+    background-image: url("login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    }    
+    </style>
+</head>
+
+<body onload="login()">
+
+    
+    {{!-- Log in form --}}
+
+    <form style="position:absolute; left: 950px; top:180px;"action="login" method="POST">
+    <input id="form_box" style="width:521px; height:58px;" type="text"  placeholder="Username"  name="username">
+    <br>  <br>  <br>  <br>
+    <input id="form_box" style="width:521px; height:58px;" type="password"  placeholder="Password"  name="password">
+    
+    <button type="submit" value="Sign in" style="position:absolute; left: 350px; top: 235px; background-color: transparent;  box-shadow: -12px -12px 8px 0 rgba(255,255,255,  0.5) , 12px 12px 8px 0 rgba(0 , 0 , 0, .5)" id="btn"> <a  style="color: black; font-weight:bold;">Log In</a> </button>
+    </form>
+
+    {{!-- Sign up button --}}
+    <button style="position:absolute; left: 950px; top: 410px; background-color: transparent;  box-shadow: -12px -12px 8px 0 rgba(255,255,255,  0.5) , 12px 12px 8px 0 rgba(0 , 0 , 0, .5) " id="btn"> <a href="/register" style="color: black; font-weight:bold;">Sign up</a> </button>
+    
+
+
+    {{#if errors.length}}
+    <div style="position: relative; top:600px; left:-300px;">
+	<p id="txt">Fix the following validation errors:</p>
+	<ul id="txt">
+		{{#each errors}}
+			<li >{{this}}</li>
+		{{/each}}
+	</ul>
+    </div>
+{{/if}}
+    
+</body>

@@ -1,0 +1,98 @@
+<html>
+    <head>
+          <title>Create Playlists</title>
+
+        <style>
+            .pctr{
+                border: none;
+                background-color: white;
+
+            }
+
+
+
+            .custom-file-input::-webkit-file-upload-button {
+            visibility: hidden;
+            }
+
+            .custom-file-input::before {
+            content: 'Select playlist picture';
+            display: inline-block;
+            background: white;
+            border: 1px solid #999;
+            border-radius: 5px;
+            padding: 5px 8px;
+            outline: none;
+            white-space: nowrap;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 10pt;
+            }
+            .custom-file-input:hover::before {
+            background-color: rgba(0,255,238,1);
+            }
+            .custom-file-input:active::before {
+            background: rgb(43, 157, 161);
+            }
+
+            .buton{
+                position: relative;
+                font-family: Segoe UI;
+                top: 25px;
+                font-size: 20px;
+                cursor: pointer;
+                background-color: rgba(0,255,238,1);
+                border: none;
+                width: fit-content;
+                height: 50px;
+                border-radius: 50px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+      
+
+<form action="" method="POST" style="position: relative; left: 50px;">
+	
+	<div>
+		<span id="txt">Playlist name : </span> <input id = "form_box"  style="width:521px; height:58px;" type="text" name="name" >
+	</div>
+
+    
+	<input  style="width:0px; height:0px; position:absolute; top:0px; visibility:hidden" type="text" name="owner_id" value="{{account.id}}">
+	
+
+
+	
+	<div style="position:relative; top20px;">
+		<span id="txt">Playlist picture : </span> <input  class="custom-file-input" type="file" width="50px" height="50px;"  name="picture" >
+	</div>
+
+    <div>
+        <span id="txt">Public Playlist ?</span> <input type="checkbox"  name="public" >
+    </div>
+	
+	<button type="submit" value="create"  class="buton"> Create Playlist </button>
+	
+</form>
+
+
+
+
+
+
+
+  {{#if errors.length}}
+	<p id="txt">Fix the following validation errors:</p>
+	<ul id="txt">
+		{{#each errors}}
+			<li>{{this}}</li>
+		{{/each}}
+	</ul>
+{{/if}}
+
+
+    </body>
+</html>

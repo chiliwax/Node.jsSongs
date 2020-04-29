@@ -1,0 +1,118 @@
+const sqlite = require('sqlite3')
+
+const db = new sqlite.Database("database.db")
+
+db.run(`CREATE TABLE IF NOT EXISTS songs(
+	id INTEGER PRIMARY KEY,
+	name TEXT,
+    artist TEXT ,
+    length TEXT
+)`)
+
+exports.getAllSongs = function(callback){
+	
+	const query = "SELECT * FROM songs ORDER BY id"
+	const values = []
+	
+	db.all(query, values, function(error, songs){
+		if(error){
+			callback("Database error.")
+		}else{
+			callback(null, songs)
+		}
+	})
+	
+}
+
+exports.getSongsFromPlaylist = function(id, callback){
+	
+	const query = "SELECT S.* FROM songs S INNER JOIN refference R on S.id = R.songID WHERE R.playlistID = ? "
+	const values = [id]
+	
+	db.all(query, values, function(error, songs){
+		
+		if(error){
+			callback("Database error.")
+		}else{
+			callback(null, songs)
+		}
+		
+	})
+}
+
+exports.getSongsFromAllPlaylist = function(id, callback){
+	
+	const query = "SELECT S.* FROM songs S INNER JOIN refference R on S.id = R.songID INNER JOIN playlists P on P.id = R.playlistID AND P.owner_id = ?  "
+	const values = [id]
+	
+	db.all(query, values, function(error, songs){
+		
+		if(error){
+			callback("Database error.")
+		}else{
+			callback(null, songs)
+		}
+		
+	})
+}
+
+
+exports.getSongsFromAllPlaylistPublic = function(id, callback){
+	
+	const query = "SELECT S.* FROM songs S INNER JOIN refference R on S.id = R.songID INNER JOIN playlists P on P.id = R.playlistID AND P.owner_id = ?  AND P.public = 1"
+	const values = [id]
+	
+	db.all(query, values, function(error, songs){
+		
+		if(error){
+			callback("Database error.")
+		}else{
+			callback(null, songs)
+		}
+		
+	})
+}
+
+
+exports.addSongToPlaylist = function(playlistID, songID ,  callback){
+
+	
+	
+	var query = "INSERT INTO refference (playlistID , songID) VALUES (?, ?);  "
+	var values = [playlistID, songID ]
+	
+	
+	db.run(query, values, function(error){
+		
+		if(error){
+			if (error.errno === 19 ) {
+				callback("Cannot have the same song 2 times in your playlist")
+			}
+			else {
+				callback("Database Error")
+			}
+		}else{
+			callback(null, this.lastID)
+		}
+		
+	})
+	
+}
+
+exports.deleteSongById = function(songID, playlistID, callback){
+	
+	const query = "DELETE FROM refference WHERE songID = ? AND playlistID = ?"
+	const values = [songID , playlistID]
+	
+	db.run(query, values, function(error){
+		
+		if(error){
+			callback("Database error.")
+		}else{
+			// Can use this.changes to see how many rows that were deleted.
+			callback(null)
+		}
+		
+	})
+	
+}

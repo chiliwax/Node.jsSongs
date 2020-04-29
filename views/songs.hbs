@@ -1,0 +1,113 @@
+<html>
+    <head>
+    <link rel="stylesheet" , href="style.css">
+      <title>Songs</title>
+
+        <style>
+            ul {
+                list-style-type: none;
+                padding-left: 0;
+            }
+
+           
+
+            .hvr:hover{
+                background-color: #909090;
+            }
+
+            .opt{
+                font-size:20px;
+                font-family: Segoe UI;
+                color: white;
+            }
+
+            .fix{
+			border: none;
+			background: transparent;
+			cursor: pointer;
+			font-family: Segoe UI;
+    		font-size: 35px;
+    		color: transparent;
+			position: absolute;
+			left: 25px;
+            width: 200px;
+		}
+        
+        </style>
+        
+    </head>
+    <body onload="navText()">
+        <div class="scroll" style="width: 84vw; overflow-x: hidden; ">
+
+
+            {{!-- Top bar All songs and number os songs --}}
+            <div style=" position:relative; left:50px; width:1510;">
+                <div style=" max-width:fit-content;float:left;"><span id="txt">All songs</span> </div>
+                <div style=" max-width:fit-content; float:right;" ><span id="txt" >{{songs.length}} Songs</span></div>
+            </div>
+
+            {{!-- Divider line --}}
+            <svg width="fit-content" height="2px" style="position: relative; left:50px; top:5px;">
+                <line x1="0" y1="0" x2="1510" y2="0" style="stroke:#FFFFFF;stroke-width:2" />
+            </svg>
+
+            {{!-- Identifiers for tracks --}}
+            <div style="display:flex; position:relative; left:50px; width:1510;">
+                <div style=" max-width:fit-content;"><span  class="smg" >Track Name</span> </div>
+                <div style=" max-width:fit-content; margin:auto;"><span class="smg" >Artist</span></div>
+                <div style=" max-width:fit-content;"><span class="smg" >Length</span></div>
+                
+            </div>
+
+
+
+            {{#if errorOcurred}}
+                <p>Internal server error, try again later!</p>
+            {{else}}
+                
+                {{#if songs.length}}
+                    {{!-- Displaying the songs --}}
+                    <ul>
+                    {{#each songs}}
+
+                    <div class="hvr" style="display:flex; position:relative; left:50px; border-bottom: solid 1px gray; width:1510;">
+                        <div style="width:150px;"><span  class="sng" >{{id}} {{name}}</span> </div>
+                        <div style=" max-width:fit-content; margin:auto; "><span class="sng" >{{artist}}</span></div>
+
+
+                        <div class="dropdown" style=" position:absolute; left:1150px; ">                      
+                                <div class = "opt" ; > <img src="add.png"> </div>
+                            <div class="dropdown-content"  style="position: absolute; top: -25px; left:30px;">  
+                                <form action="" method="post">
+                                    <input type="text" value="{{id}}" class="lgout" name="songId" style="visibility: hidden;"> </input>
+                                        {{#each ../playlists}}
+                                            <a id="txt">
+                                            {{name}} 
+                                            <input type="submit" value="{{id}}" class="fix" name="playlistId" > <br></input>
+                                            </a>
+                                        {{/each}}
+                                </form>
+                            </div>
+                       </div>
+                        
+                        <div style=" max-width:fit-content;"><span class="sng" >{{length}}</span></div>
+                     </div>
+                        
+                    {{/each}}
+                    </ul>
+                {{else}}
+                    <p>There are no songs.</p>
+                {{/if}}
+                
+            {{/if}}
+        </div>
+       
+
+    <script>
+    function navText() {
+      document.getElementsByClassName("text_selected")[0].className="text_unselected";
+      document.getElementsByClassName("text_unselected")[4].className="text_selected";
+    }
+    </script>
+    </body>
+</html>
