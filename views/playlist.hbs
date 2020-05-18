@@ -62,8 +62,8 @@
             {{!-- Identifiers for tracks --}}
             <div style="display:flex; position:relative; left:50px; width:1510;">
                 <div style=" max-width:fit-content;"><span  class="smg" >Track Name</span> </div>
-                <div style=" max-width:fit-content; margin:auto;"><span class="smg" >Artist</span></div>
-                <div style=" max-width:fit-content;"><span class="smg" >Length</span> </div>
+                <div style=" max-width:fit-content; position:relative; left:800px;"><span class="smg" >Artist</span></div>
+                <div style=" max-width:fit-content;position:relative; left:1210px;"><span class="smg" >Length</span> </div>
                 
             </div>    
 
@@ -78,7 +78,7 @@
                     {{#each songs}}
 
                     <div class="hvr" style="display:flex; position:relative; left:50px; border-bottom: solid 1px gray; width:1510;">
-                        <div style="width:150px;"><span  class="sng" > {{name}}</span> </div>
+                        <div style="width:550px;"><span  class="sng" > {{name}}</span> </div>
                         <div style=" max-width:fit-content; margin:auto; "><span class="sng" >{{artist}}</span></div>
 
                         <form action="delsong" method="POST">

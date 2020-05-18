@@ -4,6 +4,44 @@ const db1 = require('./playlistsdb')
 
 const router = express.Router()
 
+// // Stardog
+
+// 	const { Connection, query } = require('stardog');
+
+// 	const conn = new Connection({
+
+// 	username: 'admin',
+// 	password: 'admin',
+// 	endpoint: 'http://localhost:5820',
+
+// 	});
+
+// 	prefixes = "prefix dbr: <http://dbpedia.org/resource/> \
+// 	prefix dbo: <http://dbpedia.org/ontology/> \
+// 	prefix ns1: <http://purl.org/dc/terms/> \
+// 	prefix foaf: <http://xmlns.com/foaf/0.1/>  "
+
+// 	final_query = prefixes + " SELECT ?identifier ?name ?artist ?duration WHERE { \
+// 		?song a dbo:Song. \
+// 		?song dbr:Identifier ?identifier. \
+// 		?song ns1:Creator ?artist. \
+// 		?song foaf:name ?name. \
+// 		?song dbo:duration ?duration \
+// 	} \
+// 	ORDER BY ASC(?identifier)"
+
+
+
+// query.execute(conn, 'song_db', final_query, 'application/sparql-results+json', {
+
+// 	limit: 5,
+// 	offset: 0,
+
+// 	}).then(({ body }) => {
+// 	query_results = body.results.bindings
+// 	// console.log(query_results)
+// 	});
+
 
 function getValidationErrors(){
 	
@@ -14,6 +52,7 @@ function getValidationErrors(){
 	return errors
 	
 }
+
 
 router.get("/", function(request, response){
 	

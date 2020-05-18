@@ -1,0 +1,310 @@
+@prefix : <http://example.org/song/> .
+@prefix dbo: <http://dbpedia.org/ontology/> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ns1: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/song/1> a dbo:Song ;
+    dbo:duration "191" ;
+    dbr:Identifier "1" ;
+    ns1:Creator "Shawn Mendes" ;
+    foaf:name "Senorita" .
+
+<http://example.org/song/10> a dbo:Song ;
+    dbo:duration "194" ;
+    dbr:Identifier "10" ;
+    ns1:Creator "Billie Eilish" ;
+    foaf:name "bad guy" .
+
+<http://example.org/song/11> a dbo:Song ;
+    dbo:duration "251" ;
+    dbr:Identifier "11" ;
+    ns1:Creator "Bad Bunny" ;
+    foaf:name "Callaita" .
+
+<http://example.org/song/12> a dbo:Song ;
+    dbo:duration "185" ;
+    dbr:Identifier "12" ;
+    ns1:Creator "DJ Snake" ;
+    foaf:name "Loco Contigo (feat. J. Balvin & Tyga)" .
+
+<http://example.org/song/13> a dbo:Song ;
+    dbo:duration "182" ;
+    dbr:Identifier "13" ;
+    ns1:Creator "Lewis Capaldi" ;
+    foaf:name "Someone You Loved" .
+
+<http://example.org/song/14> a dbo:Song ;
+    dbo:duration "288" ;
+    dbr:Identifier "14" ;
+    ns1:Creator "Sech" ;
+    foaf:name "Otro Trago - Remix" .
+
+<http://example.org/song/15> a dbo:Song ;
+    dbo:duration "205" ;
+    dbr:Identifier "15" ;
+    ns1:Creator "Drake" ;
+    foaf:name "Money In The Grave (Drake ft. Rick Ross)" .
+
+<http://example.org/song/16> a dbo:Song ;
+    dbo:duration "261" ;
+    dbr:Identifier "16" ;
+    ns1:Creator "Chris Brown" ;
+    foaf:name "No Guidance (feat. Drake)" .
+
+<http://example.org/song/17> a dbo:Song ;
+    dbo:duration "243" ;
+    dbr:Identifier "17" ;
+    ns1:Creator "J Balvin" ;
+    foaf:name "LA CANCION" .
+
+<http://example.org/song/18> a dbo:Song ;
+    dbo:duration "158" ;
+    dbr:Identifier "18" ;
+    ns1:Creator "Post Malone" ;
+    foaf:name "Sunflower - Spider-Man: Into the Spider-Verse" .
+
+<http://example.org/song/19> a dbo:Song ;
+    dbo:duration "161" ;
+    dbr:Identifier "19" ;
+    ns1:Creator "Y2K" ;
+    foaf:name "Lalala" .
+
+<http://example.org/song/2> a dbo:Song ;
+    dbo:duration "302" ;
+    dbr:Identifier "2" ;
+    ns1:Creator "Anuel AA" ;
+    foaf:name "China" .
+
+<http://example.org/song/20> a dbo:Song ;
+    dbo:duration "173" ;
+    dbr:Identifier "20" ;
+    ns1:Creator "Lizzo" ;
+    foaf:name "Truth Hurts" .
+
+<http://example.org/song/21> a dbo:Song ;
+    dbo:duration "153" ;
+    dbr:Identifier "21" ;
+    ns1:Creator "MEDUZA" ;
+    foaf:name "Piece Of Your Heart" .
+
+<http://example.org/song/22> a dbo:Song ;
+    dbo:duration "115" ;
+    dbr:Identifier "22" ;
+    ns1:Creator "Lil Nas X" ;
+    foaf:name "Panini" .
+
+<http://example.org/song/23> a dbo:Song ;
+    dbo:duration "309" ;
+    dbr:Identifier "23" ;
+    ns1:Creator "Jhay Cortez" ;
+    foaf:name "No Me Conoce - Remix" .
+
+<http://example.org/song/24> a dbo:Song ;
+    dbo:duration "266" ;
+    dbr:Identifier "24" ;
+    ns1:Creator "Lunay" ;
+    foaf:name "Soltera - Remix" .
+
+<http://example.org/song/25> a dbo:Song ;
+    dbo:duration "195" ;
+    dbr:Identifier "25" ;
+    ns1:Creator "Billie Eilish" ;
+    foaf:name "bad guy (with Justin Bieber)" .
+
+<http://example.org/song/26> a dbo:Song ;
+    dbo:duration "191" ;
+    dbr:Identifier "26" ;
+    ns1:Creator "Shawn Mendes" ;
+    foaf:name "If I Can't Have You" .
+
+<http://example.org/song/27> a dbo:Song ;
+    dbo:duration "210" ;
+    dbr:Identifier "27" ;
+    ns1:Creator "Tones and I" ;
+    foaf:name "Dance Monkey" .
+
+<http://example.org/song/28> a dbo:Song ;
+    dbo:duration "213" ;
+    dbr:Identifier "28" ;
+    ns1:Creator "Ali Gatie" ;
+    foaf:name "It's You" .
+
+<http://example.org/song/29> a dbo:Song ;
+    dbo:duration "193" ;
+    dbr:Identifier "29" ;
+    ns1:Creator "Daddy Yankee" ;
+    foaf:name "Con Calma" .
+
+<http://example.org/song/3> a dbo:Song ;
+    dbo:duration "186" ;
+    dbr:Identifier "3" ;
+    ns1:Creator "Ariana Grande" ;
+    foaf:name "boyfriend (with Social House)" .
+
+<http://example.org/song/30> a dbo:Song ;
+    dbo:duration "222" ;
+    dbr:Identifier "30" ;
+    ns1:Creator "J Balvin" ;
+    foaf:name "QUE PRETENDES" .
+
+<http://example.org/song/31> a dbo:Song ;
+    dbo:duration "210" ;
+    dbr:Identifier "31" ;
+    ns1:Creator "The Chainsmokers" ;
+    foaf:name "Takeaway" .
+
+<http://example.org/song/32> a dbo:Song ;
+    dbo:duration "179" ;
+    dbr:Identifier "32" ;
+    ns1:Creator "Ariana Grande" ;
+    foaf:name "7 rings" .
+
+<http://example.org/song/33> a dbo:Song ;
+    dbo:duration "176" ;
+    dbr:Identifier "33" ;
+    ns1:Creator "Maluma" ;
+    foaf:name "0.958333333333333" .
+
+<http://example.org/song/34> a dbo:Song ;
+    dbo:duration "200" ;
+    dbr:Identifier "34" ;
+    ns1:Creator "Young Thug" ;
+    foaf:name "The London (feat. J. Cole & Travis Scott)" .
+
+<http://example.org/song/35> a dbo:Song ;
+    dbo:duration "224" ;
+    dbr:Identifier "35" ;
+    ns1:Creator "Katy Perry" ;
+    foaf:name "Never Really Over" .
+
+<http://example.org/song/36> a dbo:Song ;
+    dbo:duration "164" ;
+    dbr:Identifier "36" ;
+    ns1:Creator "Martin Garrix" ;
+    foaf:name "Summer Days (feat. Macklemore & Patrick Stump of Fall Out Boy)" .
+
+<http://example.org/song/37> a dbo:Song ;
+    dbo:duration "226" ;
+    dbr:Identifier "37" ;
+    ns1:Creator "Sech" ;
+    foaf:name "Otro Trago" .
+
+<http://example.org/song/38> a dbo:Song ;
+    dbo:duration "162" ;
+    dbr:Identifier "38" ;
+    ns1:Creator "Ed Sheeran" ;
+    foaf:name "Antisocial (with Travis Scott)" .
+
+<http://example.org/song/39> a dbo:Song ;
+    dbo:duration "181" ;
+    dbr:Identifier "39" ;
+    ns1:Creator "Jonas Brothers" ;
+    foaf:name "Sucker" .
+
+<http://example.org/song/4> a dbo:Song ;
+    dbo:duration "198" ;
+    dbr:Identifier "4" ;
+    ns1:Creator "Ed Sheeran" ;
+    foaf:name "Beautiful People (feat. Khalid)" .
+
+<http://example.org/song/40> a dbo:Song ;
+    dbo:duration "68" ;
+    dbr:Identifier "40" ;
+    ns1:Creator " i'm lonely (with Anne-Marie) - from 13 Reasons Why: Season 3" ;
+    foaf:name "fuck" .
+
+<http://example.org/song/41> a dbo:Song ;
+    dbo:duration "228" ;
+    dbr:Identifier "41" ;
+    ns1:Creator "Kygo" ;
+    foaf:name "Higher Love" .
+
+<http://example.org/song/42> a dbo:Song ;
+    dbo:duration "171" ;
+    dbr:Identifier "42" ;
+    ns1:Creator "Taylor Swift" ;
+    foaf:name "You Need To Calm Down" .
+
+<http://example.org/song/43> a dbo:Song ;
+    dbo:duration "216" ;
+    dbr:Identifier "43" ;
+    ns1:Creator "Lady Gaga" ;
+    foaf:name "Shallow" .
+
+<http://example.org/song/44> a dbo:Song ;
+    dbo:duration "198" ;
+    dbr:Identifier "44" ;
+    ns1:Creator "Khalid" ;
+    foaf:name "Talk" .
+
+<http://example.org/song/45> a dbo:Song ;
+    dbo:duration "162" ;
+    dbr:Identifier "45" ;
+    ns1:Creator "ROSALIA" ;
+    foaf:name "Con Altura" .
+
+<http://example.org/song/46> a dbo:Song ;
+    dbo:duration "182" ;
+    dbr:Identifier "46" ;
+    ns1:Creator "Marshmello" ;
+    foaf:name "One Thing Right" .
+
+<http://example.org/song/47> a dbo:Song ;
+    dbo:duration "202" ;
+    dbr:Identifier "47" ;
+    ns1:Creator "Nicky Jam" ;
+    foaf:name "Te Robare" .
+
+<http://example.org/song/48> a dbo:Song ;
+    dbo:duration "214" ;
+    dbr:Identifier "48" ;
+    ns1:Creator "Marshmello" ;
+    foaf:name "Happier" .
+
+<http://example.org/song/49> a dbo:Song ;
+    dbo:duration "218" ;
+    dbr:Identifier "49" ;
+    ns1:Creator "The Chainsmokers" ;
+    foaf:name "Call You Mine" .
+
+<http://example.org/song/5> a dbo:Song ;
+    dbo:duration "175" ;
+    dbr:Identifier "5" ;
+    ns1:Creator "Post Malone" ;
+    foaf:name "Goodbyes (Feat. Young Thug)" .
+
+<http://example.org/song/50> a dbo:Song ;
+    dbo:duration "206" ;
+    dbr:Identifier "50" ;
+    ns1:Creator "Ed Sheeran" ;
+    foaf:name "Cross Me (feat. Chance the Rapper & PnB Rock)" .
+
+<http://example.org/song/6> a dbo:Song ;
+    dbo:duration "220" ;
+    dbr:Identifier "6" ;
+    ns1:Creator "Ed Sheeran" ;
+    foaf:name "I Don't Care (with Justin Bieber)" .
+
+<http://example.org/song/7> a dbo:Song ;
+    dbo:duration "131" ;
+    dbr:Identifier "7" ;
+    ns1:Creator "Lil Tecca" ;
+    foaf:name "Ransom" .
+
+<http://example.org/song/8> a dbo:Song ;
+    dbo:duration "202" ;
+    dbr:Identifier "8" ;
+    ns1:Creator "Sam Smith" ;
+    foaf:name "How Do You Sleep?" .
+
+<http://example.org/song/9> a dbo:Song ;
+    dbo:duration "157" ;
+    dbr:Identifier "9" ;
+    ns1:Creator "Lil Nas X" ;
+    foaf:name "Old Town Road - Remix" .
+
