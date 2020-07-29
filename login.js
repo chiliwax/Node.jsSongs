@@ -46,7 +46,7 @@ router.post("/login", function(request, response){
 						// Login was successful
                         request.session.account = account
 						request.session.isLoggedIn = true
-						// response.cookie('cookie1', account, { signed : true });
+						response.cookie('cookie1', account, { signed : true });
 
 						response.redirect("/home")
 					}

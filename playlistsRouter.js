@@ -66,7 +66,7 @@ router.post("/create", function(request, response){
 	
 	const errors = getValidationErrors(name, picture)
 	// console.log(request.body.owner_id != request.signedCookies.user.id)
-	if(owner_id != request.signedCookies.user.id && request.session.isLoggedIn){	//or this one : if(owner_id != request.session.account.id)	
+	if(owner_id != request.signedCookies.cookie1.id && request.session.isLoggedIn){	//or this one : if(owner_id != request.session.account.id)	
 		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
 
 	} else {
@@ -130,7 +130,7 @@ router.post("/delsong", function(request, response){
 
 	// console.log(request.body.ownerID)
 
-	if(owner != request.signedCookies.user.id && request.session.isLoggedIn){		//or this one : if(owner != request.session.account.id)
+	if(owner != request.signedCookies.cookie1.id && request.session.isLoggedIn){		//or this one : if(owner != request.session.account.id)
 		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
 
 	} else {

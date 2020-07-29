@@ -18,7 +18,7 @@ const apiRouter = require('./apiRouter')
 const app = express()
 
 
-app.use(cookieParser('secret-weapon'))
+app.use(cookieParser('my secret'))
 
 
 app.engine("hbs" , expressHandlebars({

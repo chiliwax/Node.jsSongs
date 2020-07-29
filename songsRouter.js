@@ -38,9 +38,10 @@ router.post("/", function(request, response){
 	const errors = getValidationErrors()
 	
 	// console.log(request.session.account.id)
-	console.log(request.signedCookies.user.id)
+	// console.log(request.signedCookies.user)
 	// console.log(request.session.account.id == request.signedCookies.user.id)
-	if (request.session.account.id == request.signedCookies.user.id && request.session.isLoggedIn) {
+	console.log(request.signedCookies.cookie1.id)
+	if (request.session.account.id == request.signedCookies.cookie1.id && request.session.isLoggedIn) {
 		if(errors.length == 0){
 			
 			songs_db.addSongToPlaylist(playlistID , songID , function(error){
