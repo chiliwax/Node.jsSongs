@@ -60,6 +60,7 @@ app.post("/sign_up", function(request, response){
 
 app.post("/logout", function(request, response){
 	request.session.isLoggedIn = false
+	response.clearCookie("cookie1")
 	response.redirect("/")
 })
 

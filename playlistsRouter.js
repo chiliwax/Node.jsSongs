@@ -129,6 +129,9 @@ router.post("/delsong", function(request, response){
 	var owner = request.body.ownerID
 
 	// console.log(request.body.ownerID)
+	playlists_db.getOwnerIDbyPlaylistID(playlistID,function(error, ownerID){
+		console.log(ownerID)
+	})
 
 	if(owner != request.signedCookies.cookie1.id && request.session.isLoggedIn){		//or this one : if(owner != request.session.account.id)
 		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
@@ -162,7 +165,7 @@ router.post("/:id", function(request, response){
 	var owner = request.body.ownerID	
 
 	const id = request.params.id
-	if(owner != request.signedCookies.user.id && request.session.isLoggedIn){	//or this one : if(owner != request.session.account.id)	
+	if(owner != request.signedCookies.cookie1.id && request.session.isLoggedIn){	//or this one : if(owner != request.session.account.id)	
 		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
 
 	} else {
