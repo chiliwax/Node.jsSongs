@@ -4,17 +4,17 @@ const db = new sqlite.Database("database.db")
 
 db.run(`CREATE TABLE IF NOT EXISTS playlists(
     id INTEGER PRIMARY KEY,
-    owner_id INTEGER ,
+    ownerID INTEGER ,
     picture TEXT,
 	name TEXT ,
-	public BOOLEAN ,
+	ispublic BOOLEAN ,
     FOREIGN KEY(owner_id) REFERENCES users(id)
 )`)
 
 
 exports.getAllPlaylists = function(callback){
 	
-	const query = "SELECT * FROM playlists WHERE public = 1 ORDER BY id"
+	const query = "SELECT * FROM playlists WHERE ispublic = 1 ORDER BY id"
 	const values = []
 	
 	db.all(query, values, function(error, playlists){
@@ -38,7 +38,7 @@ exports.createPlaylist = function(name, picture, public, owner_id, callback){
 		public = 0
 	}
 	
-	var query = "INSERT INTO playlists (name, picture , public,owner_id) VALUES (?, ? , ? ,?);  "
+	var query = "INSERT INTO playlists (name, picture , ispublic,ownerID) VALUES (?, ? , ? ,?);  "
 	var values = [name, picture , public , owner_id ]
 	
 	
@@ -71,9 +71,25 @@ exports.getPlaylistById = function(playlistId, callback){
 	})
 }
 
+exports.getOwnerIDbyPlaylistID = function(playlistId, callback){
+	
+	const query = "SELECT ownerID FROM playlists WHERE id = ?"
+	const values = [playlistId]
+	
+	db.get(query, values, function(error, ownerID){
+		
+		if(error){
+			callback("Database error.")
+		}else{
+			callback(null, ownerID)
+		}
+		
+	})
+}
+
 exports.getPlaylistsByOwnerId = function(id, callback){
 	
-	const query = "SELECT * FROM playlists WHERE owner_id = ? and public = 1"
+	const query = "SELECT * FROM playlists WHERE ownerID = ? and ispublic = 1"
 	const values = [id]
 	
 	db.all(query, values, function(error, playlists){
@@ -89,7 +105,7 @@ exports.getPlaylistsByOwnerId = function(id, callback){
 
 exports.getAllPlaylistsByOwnerId = function(id, callback){
 	
-	const query = "SELECT * FROM playlists WHERE owner_id = ?"
+	const query = "SELECT * FROM playlists WHERE ownerID = ?"
 	const values = [id]
 	
 	db.all(query, values, function(error, playlists){

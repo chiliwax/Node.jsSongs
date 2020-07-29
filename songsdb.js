@@ -6,14 +6,17 @@ db.run(`CREATE TABLE IF NOT EXISTS songs(
 	id INTEGER PRIMARY KEY,
 	name TEXT,
     artist TEXT ,
-    length TEXT
+    songLength TEXT
 )`)
 
+
+
 exports.getAllSongs = function(callback){
-	
+
+
 	const query = "SELECT * FROM songs ORDER BY id"
 	const values = []
-	
+
 	db.all(query, values, function(error, songs){
 		if(error){
 			callback("Database error.")
@@ -23,6 +26,8 @@ exports.getAllSongs = function(callback){
 	})
 	
 }
+
+
 
 exports.getSongsFromPlaylist = function(id, callback){
 	
@@ -59,7 +64,7 @@ exports.getSongsFromAllPlaylist = function(id, callback){
 
 exports.getSongsFromAllPlaylistPublic = function(id, callback){
 	
-	const query = "SELECT S.* FROM songs S INNER JOIN refference R on S.id = R.songID INNER JOIN playlists P on P.id = R.playlistID AND P.owner_id = ?  AND P.public = 1"
+	const query = "SELECT S.* FROM songs S INNER JOIN refference R on S.id = R.songID INNER JOIN playlists P on P.id = R.playlistID AND P.ownerID = ?  AND P.ispublic = 1"
 	const values = [id]
 	
 	db.all(query, values, function(error, songs){
@@ -109,7 +114,6 @@ exports.deleteSongById = function(songID, playlistID, callback){
 		if(error){
 			callback("Database error.")
 		}else{
-			// Can use this.changes to see how many rows that were deleted.
 			callback(null)
 		}
 		

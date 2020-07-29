@@ -5,9 +5,8 @@
      <style>
     body  {
     background-image: url("login.png");
-    background-size: cover;
+    background-size:inherit;
     background-repeat: no-repeat;
-    overflow-x: hidden;
     }    
     </style>
 </head>
@@ -26,8 +25,9 @@
     </form>
 
     {{!-- Sign up button --}}
-    <button style="position:absolute; left: 950px; top: 410px; background-color: transparent;  box-shadow: -12px -12px 8px 0 rgba(255,255,255,  0.5) , 12px 12px 8px 0 rgba(0 , 0 , 0, .5) " id="btn"> <a href="/register" style="color: black; font-weight:bold;">Sign up</a> </button>
-    
+    <form action="sign_up" method="POST">
+    <button type="submit" style="position:absolute; left: 950px; top: 410px; background-color: transparent;  box-shadow: -12px -12px 8px 0 rgba(255,255,255,  0.5) , 12px 12px 8px 0 rgba(0 , 0 , 0, .5) " id="btn"> <a  style="color: black; font-weight:bold;">Sign up</a> </button>
+    </form>
 
 
     {{#if errors.length}}

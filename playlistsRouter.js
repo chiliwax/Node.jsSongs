@@ -1,6 +1,7 @@
 const express = require('express')
-const db = require('./playlistsdb')
-const db1 = require("./songsdb")
+const playlists_db = require('./playlistsdb')
+const songs_db = require("./songsdb")
+const { request } = require('express')
 
 const router = express.Router()
 
@@ -15,7 +16,7 @@ function getValidationErrors(name, picture){
 	if(picture.length == 0){
 		errors.push("Must enter a picture.")
 	}
-	
+
 	return errors
 	
 }
@@ -27,20 +28,17 @@ function getValidationErrors(name, picture){
 
 router.get("/", function(request, response){
 	
-	db.getAllPlaylists(function(error, playlists){
-		
-		if(!request.session.isLoggedIn){		
-			response.send('Please login to view this page!');
-		}
-		else{
+	if(!request.session.isLoggedIn){		
+		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+	}
+	else{
+		playlists_db.getAllPlaylists(function(error, playlists){			
 			const model = {
 				playlists: playlists
 			}
-			response.render("home.hbs", model)
-			
-		}
-		
-	})
+			response.render("home.hbs", model)			
+		})
+	}
 	
 })
 
@@ -49,10 +47,12 @@ router.get("/", function(request, response){
 
 router.get("/create", function(request, response){
 	if(!request.session.isLoggedIn){		
-		response.send('Please login to view this page!');
+		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+	} else {
+		response.render("create_playlist.hbs")
+	}
+	// console.log(request.signedCookies.user)
 
-	}else
-	response.render("create_playlist.hbs")
 })
 
 
@@ -65,49 +65,50 @@ router.post("/create", function(request, response){
 	const owner_id = request.body.owner_id
 	
 	const errors = getValidationErrors(name, picture)
-	
-	if(errors.length == 0){
-		
-		db.createPlaylist(name, picture , public , owner_id, function(error){
-			if(error){
-				// TODO: Handle error.
-			}else{
-				response.redirect("/home")
+	// console.log(request.body.owner_id != request.signedCookies.user.id)
+	if(owner_id != request.signedCookies.user.id && request.session.isLoggedIn){	//or this one : if(owner_id != request.session.account.id)	
+		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+
+	} else {
+		if(errors.length == 0){
+			
+			playlists_db.createPlaylist(name, picture , public , owner_id, function(error){
+				if(error){
+					// TODO: Handle error.
+				} else {
+					response.redirect("/home")
+				}
+			})
+			
+		} else {
+			const model = {
+				errors: errors,
+				name: name,
+				picture : picture ,
+				public : public ,
+				owner_id:owner_id
 			}
-		})
-		
-	}else{
-		
-		const model = {
-			errors: errors,
-			name: name,
-			picture : picture ,
-			public : public ,
-			owner_id:owner_id
+			response.render("create_playlist.hbs", model)
 		}
-		
-		response.render("create_playlist.hbs", model)
-		
 	}
 	
 })
 
 router.get("/:id", function(request, response){
 	if(!request.session.isLoggedIn){		
-		response.send('Please login to view this page!');
+		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
 
-	}else
-	{
+	} else {
 
 	const id = request.params.id
 	
-	db.getPlaylistById(id, function(error, playlist){
+	playlists_db.getPlaylistById(id, function(error, playlist){
 		
 		if(error){
 			// TODO: Handle error.
 		}else
 			{
-				db1.getSongsFromPlaylist(id ,function(error,songs){
+				songs_db.getSongsFromPlaylist(id ,function(error,songs){
 					const model = {
 						playlist:playlist,
 						songs: songs
@@ -125,28 +126,32 @@ router.post("/delsong", function(request, response){
 	
 	const songID = request.body.songID
 	const playlistID = request.body.playlistID
-	
-	db1.deleteSongById(songID, playlistID ,function(error){
-		
-		if(error){
-			// TODO: Handle error.
-		}else{
-			db.getPlaylistById(playlistID, function(error, playlist){
-		
-					
-						db1.getSongsFromPlaylist(playlistID ,function(error,songs){
-							const model = {
+	var owner = request.body.ownerID
+
+	// console.log(request.body.ownerID)
+
+	if(owner != request.signedCookies.user.id && request.session.isLoggedIn){		//or this one : if(owner != request.session.account.id)
+		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+
+	} else {
+		songs_db.deleteSongById(songID, playlistID ,function(error){
+			
+			if(error){
+				// TODO: Handle error.
+			} else {
+				playlists_db.getPlaylistById(playlistID, function(error, playlist){	
+					songs_db.getSongsFromPlaylist(playlistID ,function(error,songs){
+						const model = {
 								playlist:playlist,
 								songs: songs
 							}
-							response.render("playlist.hbs", model)
-		
-						})
-					
+						response.render("playlist.hbs", model)
+					})
 				})	
-		}
-		
-	})
+			}
+			
+		})
+	}
 	
 })
 
@@ -154,20 +159,23 @@ router.post("/delsong", function(request, response){
 
 router.post("/:id", function(request, response){
 	
+	var owner = request.body.ownerID	
+
 	const id = request.params.id
-	
-	db.deletePlaylistById(id, function(error){
-		
-		if(error){
-			// TODO: Handle error.
-		}else{
-			response.redirect("/home")
-		}
-		
-	})
+	if(owner != request.signedCookies.user.id && request.session.isLoggedIn){	//or this one : if(owner != request.session.account.id)	
+		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+
+	} else {
+		playlists_db.deletePlaylistById(id, function(error){
+			if(error){
+				// TODO: Handle error.
+			} else {
+				response.redirect("/home")
+			}
+		})
+	}
 	
 })
-
 
 
 

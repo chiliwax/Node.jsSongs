@@ -66,7 +66,8 @@ router.post("/", function(request, response){
 			}
 		})
 	})
-	}else{
+
+	} else {
 		
 		const model = {
 			errors: errors,
@@ -76,9 +77,7 @@ router.post("/", function(request, response){
             picture: picture , 
             layout : "intro.hbs"
 		}
-		
 		response.render("register.hbs", model)
-		
 	}
 	
 })

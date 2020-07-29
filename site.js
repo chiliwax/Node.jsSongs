@@ -2,8 +2,9 @@ const express = require('express')
 const expressHandlebars = require('express-handlebars')
 const bodyParser = require('body-parser')
 const expressSession = require('express-session')
-const db = require('./playlistsdb')
-const db1 = require('./songsdb')
+const playlists_db = require('./playlistsdb')
+const songs_db = require('./songsdb')
+var cookieParser = require('cookie-parser')
 
 
 const songRouter = require('./songsRouter')
@@ -17,22 +18,18 @@ const apiRouter = require('./apiRouter')
 const app = express()
 
 
+app.use(cookieParser('secret-weapon'))
+
 
 app.engine("hbs" , expressHandlebars({
 defaultLayout: "main.hbs"
 }))
 
-app.use(
-    express.static("public")
-)
+app.use(express.static("public"))
 
-app.use (
-    express.static('views/images')
-)
+app.use (express.static('views/images'))
 
-app.use(bodyParser.urlencoded({
-	extended: false
-}))
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.use(expressSession({
 	resave: false,
@@ -48,17 +45,18 @@ app.use(function(request, response, next){
 	next()
 })
 
-
-
-
-
-
-
 app.use("/songs", songRouter)
 app.use("/users" , userRouter)
 app.use("/home" , playlistRouter)
 app.use("/register" , register)
 app.use("/" , login)
+
+app.post("/sign_up", function(request, response){
+	response.redirect("/register")
+})
+
+
+
 
 app.post("/logout", function(request, response){
 	request.session.isLoggedIn = false
@@ -68,55 +66,46 @@ app.post("/logout", function(request, response){
 app.get("/about" , function(request , response) {
 	if(!request.session.isLoggedIn){		
 		response.send('Please login to view this page!');
-
-	}else
+	} else
     response.render("about.hbs" )
-    })
+})
 
 
 app.get("/contact" , function(request , response) {
 	if(!request.session.isLoggedIn){		
 		response.send('Please login to view this page!');
-
-	}else
+	} else
     response.render("contact.hbs" ,{})
-    })
+})
 
 
 app.get("/about1" , function(request , response) {
-	
     response.render("about.hbs" ,{layout:"intro.hbs"})
-    })
+})
 
 app.get("/contact1" , function(request , response) {
-	
     response.render("contact.hbs" ,{layout:"intro.hbs"})
-    })
-	
+})
+		
 	
 
 app.get("/own_profile" , function(request , response) {
 	if(!request.session.isLoggedIn){		
-		response.send('Please login to view this page!');
+		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+	} else {
+		playlists_db.getAllPlaylistsByOwnerId(request.session.account.id,function(error, playlists){
+			
+				songs_db.getSongsFromAllPlaylist(request.session.account.id,function(error, songs){
+					const model = {
+						playlists: playlists,
+						songs:songs
+					}
+					response.render("own_profile.hbs", model)
+				})	
+		})
+	}
+})
 
-	} else
-	
-	db.getAllPlaylistsByOwnerId(request.session.account.id,function(error, playlists){
-		
-		if(!request.session.isLoggedIn){		
-			response.send('Please login to view this page!');
-		}
-		else{
-			db1.getSongsFromAllPlaylist(request.session.account.id,function(error, songs){
-				const model = {
-					playlists: playlists,
-					songs:songs
-				}
-				response.render("own_profile.hbs", model)
-			})
-		}		
-	})
-	})
 	
 
 

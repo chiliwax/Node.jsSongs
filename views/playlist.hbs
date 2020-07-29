@@ -32,13 +32,14 @@
 
     <body>
 
-    <div class="scroll" style="width: 84vw; overflow-x: hidden; ">
+    <div class="scroll" style="width:105.8%; overflow-x: hidden; ">
 
 
 
 
             <div style="position: absolute; top:90px; width:fit-content; height:fit-content;">
             <form action="" method="POST">
+                <input  style="width:0px; height:0px; position:absolute; top:0px; visibility:hidden" type="text" name="ownerID" value="{{playlist.ownerID}}">
                     <button type="submit"  class ="del"><img src="/delete.png" style="height: 40px; width:40px; cursor:pointer;" > </button>
             </form>
             </div>
@@ -62,8 +63,8 @@
             {{!-- Identifiers for tracks --}}
             <div style="display:flex; position:relative; left:50px; width:1510;">
                 <div style=" max-width:fit-content;"><span  class="smg" >Track Name</span> </div>
-                <div style=" max-width:fit-content; margin:auto;"><span class="smg" >Artist</span></div>
-                <div style=" max-width:fit-content;"><span class="smg" >Length</span> </div>
+                <div style=" max-width:fit-content; position:relative; left:835px;"><span class="smg" >Artist</span></div>
+                <div style=" max-width:fit-content;position:relative; left:1195px;"><span class="smg" >Length</span> </div>
                 
             </div>    
 
@@ -78,12 +79,13 @@
                     {{#each songs}}
 
                     <div class="hvr" style="display:flex; position:relative; left:50px; border-bottom: solid 1px gray; width:1510;">
-                        <div style="width:150px;"><span  class="sng" > {{name}}</span> </div>
+                        <div style="width:550px;"><span  class="sng" > {{name}}</span> </div>
                         <div style=" max-width:fit-content; margin:auto; "><span class="sng" >{{artist}}</span></div>
 
                         <form action="delsong" method="POST">
                             <input  style="width:0px; height:0px; position:absolute; top:0px; visibility:hidden" type="text" name="songID" value="{{id}}">
                             <input  style="width:0px; height:0px; position:absolute; top:0px; visibility:hidden" type="text" name="playlistID" value="{{../playlist.id}}">
+                            <input  style="width:0px; height:0px; position:absolute; top:0px; visibility:hidden" type="text" name="ownerID" value="{{../playlist.ownerID}}">
                             <button type="submit"  class ="del" ><img src="/del.png" style="position:absolute; right:20%; cursor:pointer;"> </button>
                         </form>
 
@@ -93,21 +95,21 @@
                     {{/each}}
                     </ul>
                 {{else}}
-                    <p>There are no songs.</p>
+                    <p>There are no songs in this playlist.</p>
                 {{/if}}
                 
             {{/if}}
 
-            <div style="visibility: hidden;"  id = "pula">{{account.id}}</div>
-            <div  style="visibility: hidden;" id = "pula2">{{playlist.owner_id}}</div>
+            <div style="visibility: hidden;"  id = "acc_id">{{account.id}}</div>
+            <div  style="visibility: hidden;" id = "owner_id">{{playlist.ownerID}}</div>
 
 
 
 
     </div>
     <script>
-        var accountID = document.getElementById('pula').innerHTML
-        var owner = document.getElementById('pula2').innerHTML
+        var accountID = document.getElementById('acc_id').innerHTML
+        var owner = document.getElementById('owner_id').innerHTML
 
         if(accountID !== owner) {
             document.getElementsByClassName("del")[0].style.visibility = "hidden";

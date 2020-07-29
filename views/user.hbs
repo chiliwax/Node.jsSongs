@@ -44,15 +44,15 @@
     <body onload="navText()">
 
         {{!-- User's profile picture  , name and details --}}
-    <div class="scroll" style="width: 84vw; overflow-x: hidden; ">
+    <div class="scroll" style="width:105.8%; overflow-x: hidden; ">
         <div>
         {{#if user}}
         <div class="prf">
             <img src=/{{user.picture}} id="profilePicSquare" style="width: 300px; height:300px;">
             <span id="txt">{{user.name}}</span>
             {{#if playlists}}
-            <span id="txt" style="position: relative; top:120px; left:-120px"  >{{playlists.length}} Playlists</span>
-            <span id="txt" style="position: relative; top:250px; left:-300px">{{songs.length}} Songs</span>
+            <span id="txt" style="position: relative; top:120px; left:-100px"  >{{playlists.length}} Playlists</span>
+            <span id="txt" style="position: relative; top:250px; left:-280px">{{songs.length}} Songs</span>
             {{/if}}
         </div>
         {{else}}
@@ -153,18 +153,18 @@
         }
 
         function chg1(){
-           document.getElementById("1").style.border = "hidden";
-           document.getElementById("plst").style.visibility = "hidden";
-           document.getElementById("2").style.borderBottom = "solid 4px rgba(0,255,238,1)";
-           document.getElementById("sngs").style.visibility = "visible";
+            document.getElementById("plst").style.visibility = "hidden";
+            document.getElementById("1").style.border = "hidden";  
+            document.getElementById("2").style.borderBottom = "solid 4px rgba(0,255,238,1)";
+            document.getElementById("sngs").style.visibility = "visible";
 
         }
 
         function chg2(){
-           document.getElementById("2").style.border = "hidden";
-           document.getElementById("1").style.borderBottom = "solid 4px rgba(0,255,238,1)";
-           document.getElementById("plst").style.visibility = "visible";
-           document.getElementById("sngs").style.visibility = "hidden";
+            document.getElementById("2").style.border = "hidden";
+            document.getElementById("1").style.borderBottom = "solid 4px rgba(0,255,238,1)";
+            document.getElementById("plst").style.visibility = "visible";
+            document.getElementById("sngs").style.visibility = "hidden";
         }
     </script>
     </body>

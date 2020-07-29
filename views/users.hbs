@@ -6,40 +6,26 @@
         
     </head>
     <body onload="navText()">
-      <div class="scroll" style="width: 84vw; overflow-x: hidden; ">
-
-
-
-      {{!-- <div  style="display:flex; position:relative; left:50px;; width:1510; margin-top:50px; margin-bottom:50px;">
-          <div class="hvr" style=" max-width:fit-content; margin:auto; text-align:center;"> <img src="irn.png" id="profilePicSquare" class="image"> <span id="txt">Alex</span> </div>
-          <div class="hvr" style=" max-width:fit-content; margin:auto; text-align:center;"> <img src="irn.png" id="profilePicSquare" class="image"> <span id="txt">Alex</span> </div>
-          <div class="hvr" style=" max-width:fit-content; margin:auto; text-align:center;"> <img src="irn.png" id="profilePicSquare" class="image"> <span id="txt">Alex</span> </div>
-          <div class="hvr" style=" max-width:fit-content; margin:auto; text-align:center;"> <img src="irn.png" id="profilePicSquare" class="image"> <span id="txt">Alex</span> </div>
-          <div class="hvr" style=" max-width:fit-content; margin:auto; text-align:center;"> <img src="irn.png" id="profilePicSquare" class="image"> <span id="txt">Alex</span> </div>
-        </div> --}}
-
+      <div class="scroll" style="width:105.8%; overflow-x: hidden; ">
       <br>
       <br>
       {{#if errorOcurred}}
-                <p>Internal server error, try again later!</p>
-            {{else}}
-                
-                {{#if users.length}}
-                    {{!-- Displaying the users --}}
-                    {{#each users}}
-                        <div class="hvr prf"> 
-                          <a href="/users/{{id}}">
-                          <img src={{picture}} id="profilePicSquare" class="image"> 
-                          <span id="txt">{{name}}</span> 
-                          </a>
-                        </div>
-                    {{/each}}
-                {{else}}
-                    <p>There are no users.</p>
-                {{/if}}
-                
-            {{/if}}
-
+        <p>Internal server error, try again later!</p>
+      {{else}}
+        {{#if users.length}}
+        {{!-- Displaying the users --}}
+        {{#each users}}
+          <div class="hvr prf"> 
+            <a href="/users/{{id}}">
+            <img src={{picture}} id="profilePicSquare" class="image"> 
+            <span id="txt">{{name}}</span> 
+            </a>
+          </div>
+        {{/each}}
+        {{else}}
+          <p>There are no users.</p>
+        {{/if}}                
+        {{/if}}
 
       </div>
 

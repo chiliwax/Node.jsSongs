@@ -37,7 +37,7 @@
         
     </head>
     <body onload="navText()">
-        <div class="scroll" style="width: 84vw; overflow-x: hidden; ">
+        <div class="scroll" style="width:105.8%; overflow-x: hidden; ">
 
 
             {{!-- Top bar All songs and number os songs --}}
@@ -54,54 +54,53 @@
             {{!-- Identifiers for tracks --}}
             <div style="display:flex; position:relative; left:50px; width:1510;">
                 <div style=" max-width:fit-content;"><span  class="smg" >Track Name</span> </div>
-                <div style=" max-width:fit-content; margin:auto;"><span class="smg" >Artist</span></div>
-                <div style=" max-width:fit-content;"><span class="smg" >Length</span></div>
+                <div style=" max-width:fit-content; position:relative; left:835px;"><span class="smg" >Artist</span></div>
+                <div style=" max-width:fit-content; position:relative; left:1195px;"><span class="smg" >Length</span></div>
                 
             </div>
 
 
-
             {{#if errorOcurred}}
-                <p>Internal server error, try again later!</p>
-            {{else}}
-                
-                {{#if songs.length}}
-                    {{!-- Displaying the songs --}}
-                    <ul>
-                    {{#each songs}}
-
-                    <div class="hvr" style="display:flex; position:relative; left:50px; border-bottom: solid 1px gray; width:1510;">
-                        <div style="width:150px;"><span  class="sng" >{{id}} {{name}}</span> </div>
-                        <div style=" max-width:fit-content; margin:auto; "><span class="sng" >{{artist}}</span></div>
-
-
-                        <div class="dropdown" style=" position:absolute; left:1150px; ">                      
-                                <div class = "opt" ; > <img src="add.png"> </div>
-                            <div class="dropdown-content"  style="position: absolute; top: -25px; left:30px;">  
-                                <form action="" method="post">
-                                    <input type="text" value="{{id}}" class="lgout" name="songId" style="visibility: hidden;"> </input>
-                                        {{#each ../playlists}}
-                                            <a id="txt">
-                                            {{name}} 
-                                            <input type="submit" value="{{id}}" class="fix" name="playlistId" > <br></input>
-                                            </a>
-                                        {{/each}}
-                                </form>
-                            </div>
-                       </div>
-                        
-                        <div style=" max-width:fit-content;"><span class="sng" >{{length}}</span></div>
-                     </div>
-                        
-                    {{/each}}
-                    </ul>
+                    <p>Internal server error, try again later!</p>
                 {{else}}
-                    <p>There are no songs.</p>
-                {{/if}}
-                
+                    
+                    {{#if songs.length}}
+                        {{!-- Displaying the songs --}}
+                        <ul>
+                        {{#each songs}}
+
+                        <div class="hvr" style="display:flex; position:relative; left:50px; border-bottom: solid 1px gray; width:1510;">
+                            <div style="width:550px;"><span  class="sng" >{{id}}  {{name}}</span> </div>
+                            <div style=" max-width:fit-content; margin:auto; "><span class="sng" >{{artist}}</span></div>
+
+
+                            <div class="dropdown" style=" position:absolute; left:1150px; ">                      
+                                <div class = "opt" ; > <img src="add.png"> </div>
+                                <div class="dropdown-content"  style="position: absolute; top: -25px; left:30px;">  
+                                    <form action="" method="post">
+                                        <input type="text" value="{{id}}" class="lgout" name="songId" style="visibility: hidden;"> </input>
+                                            {{#each ../playlists}}
+                                                <a id="txt">
+                                                {{name}} 
+                                                <input type="submit" value="{{id}}" class="fix" name="playlistId" > <br></input>
+                                                </a>
+                                            {{/each}}
+                                    </form>
+                                </div>
+                        </div>
+                            <div style=" max-width:fit-content;"><span class="sng" >{{songLength}}</span></div>
+                        </div>
+                            
+                        {{/each}}
+                        </ul>
+                        {{else}}
+                            <p>There are no songs.</p>
+                    {{/if}}
+                    
             {{/if}}
+
+            
         </div>
-       
 
     <script>
     function navText() {

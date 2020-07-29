@@ -6,7 +6,7 @@
 	<style>
 		body {
 			overflow-y:hidden;
-			overflow-x:hidden;
+			overflow-x:auto
 		}
 
 
@@ -31,9 +31,9 @@
 
 <div>
 	{{!-- Top Bar --}}
-	<svg class="bar" style="left: 300px; width: 100%; height: 70;">
+	<svg class="bar" style="left: 300px; width: 85%; height: 70;">
 		<rect fill="rgba(115,115,115,1)"  width="200%" height="70">	
-		</svg>
+	</svg>
 	
 	<div id="top-text" style="left: 1544px; top: 14px;">
 		<a class="text_unselected" style="font-size: 30px;" href = "/about">ABOUT</a>
@@ -68,36 +68,30 @@
 <div>
 
 	<svg class="side_bar_rect">
-				<rect fill="rgba(42,42,42,1)" id="side_bar_rect" rx="0" ry="0" x="0" y="0" width="300" height="550%">
-				</rect>
+		<rect fill="rgba(42,42,42,1)" id="side_bar_rect" rx="0" ry="0" x="0" y="0" width="300" height="550%"></rect>
 	</svg>
 
 	<div>
 		<a class="text_selected" style="left: 14px;  top: 124px;" href="/home"><span>PLAYLISTS</span></a>  
 	</div>
 
-	<div >
+	<div>
 		<a  class="text_unselected" style="left: 14px;  top: 192px;" href="/users"  ><span>USERS</span> </a>
 	</div>
 
-	<div >
+	<div>
 		<a class="text_unselected" style="left: 14px;  top: 260px;" href="/songs"><span>SONGS</span> </a>
 	</div>
 </div>
 
-<main id="content" style="position:absolute;">
+<main id="content">
 	{{{body}}}
 </main>
 
 {{!-- Player (if possible) --}}
 <div id="player">
 		<svg class="player_bg">
-			<rect fill="rgba(42,42,42,1)" id="player_bg" rx="0" ry="0" x="0" y="0" width="700%" height="90"> 
-				
-			</rect>
-			<audio controls>
-					<source src="E:/Music/Rec/Losing it one more time (1).mp3" type="audio/mpeg">
-				</audio>
+			<rect fill="rgba(42,42,42,1)" id="player_bg" rx="0" ry="0" x="0" y="0" width="645%" height="90"> </rect>
 		</svg>
 </div>
 
