@@ -126,14 +126,11 @@ router.post("/delsong", function(request, response){
 	
 	const songID = request.body.songID
 	const playlistID = request.body.playlistID
-	var owner = request.body.ownerID
 
-	// console.log(request.body.ownerID)
-	playlists_db.getOwnerIDbyPlaylistID(playlistID,function(error, ownerID){
-		console.log(ownerID)
-	})
+	playlists_db.getOwnerIDbyPlaylistID(playlistID,function(error, output){
+		// console.log(output.ownerID)
 
-	if(owner != request.signedCookies.cookie1.id && request.session.isLoggedIn){		//or this one : if(owner != request.session.account.id)
+		if(output.ownerID != request.signedCookies.cookie1.id && request.session.isLoggedIn){
 		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
 
 	} else {
@@ -155,6 +152,7 @@ router.post("/delsong", function(request, response){
 			
 		})
 	}
+	})
 	
 })
 
@@ -165,19 +163,21 @@ router.post("/:id", function(request, response){
 	var owner = request.body.ownerID	
 
 	const id = request.params.id
-	if(owner != request.signedCookies.cookie1.id && request.session.isLoggedIn){	//or this one : if(owner != request.session.account.id)	
-		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+	playlists_db.getOwnerIDbyPlaylistID(id,function(error, output){
+		if(output.ownerID != request.signedCookies.cookie1.id && request.session.isLoggedIn){	//or this one : if(owner != request.session.account.id)	
+			response.render("not_loggedin.hbs", {layout:"intro.hbs"})
 
-	} else {
-		playlists_db.deletePlaylistById(id, function(error){
-			if(error){
-				// TODO: Handle error.
-			} else {
-				response.redirect("/home")
-			}
-		})
-	}
-	
+		} else {
+			playlists_db.deletePlaylistById(id, function(error){
+				if(error){
+					// TODO: Handle error.
+				} else {
+					response.redirect("/home")
+				}
+			})
+		}
+		
+	})
 })
 
 

@@ -40,29 +40,34 @@ router.post("/", function(request, response){
 	// console.log(request.session.account.id)
 	// console.log(request.signedCookies.user)
 	// console.log(request.session.account.id == request.signedCookies.user.id)
-	console.log(request.signedCookies.cookie1.id)
-	if (request.session.account.id == request.signedCookies.cookie1.id && request.session.isLoggedIn) {
-		if(errors.length == 0){
-			
-			songs_db.addSongToPlaylist(playlistID , songID , function(error){
-				if(error){
-					response.send(error);
-				}else{
-					response.redirect("/songs")
+	// console.log(request.signedCookies.cookie1.id)
+
+	playlists_db.getOwnerIDbyPlaylistID(playlistID,function(error, output){
+
+		if (output.ownerID == request.signedCookies.cookie1.id && request.session.isLoggedIn) {
+			if(errors.length == 0){
+				
+				songs_db.addSongToPlaylist(playlistID , songID , function(error){
+					if(error){
+						response.send(error);
+					}else{
+						response.redirect("/songs")
+					}
+				})
+				
+			}else{
+				
+				const model = {
+					errors: errors
 				}
-			})
-			
-		}else{
-			
-			const model = {
-				errors: errors
+				response.render("songs.hbs", model)
 			}
-			response.render("songs.hbs", model)
 		}
-	}
-	else {
-		response.render("not_loggedin.hbs", {layout:"intro.hbs"})
-	}
+		else {
+			response.render("not_loggedin.hbs", {layout:"intro.hbs"})
+		}
+
+	})
 })
 
 
