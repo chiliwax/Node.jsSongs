@@ -38,7 +38,7 @@ exports.createPlaylist = function(name, picture, public, owner_id, callback){
 		public = 0
 	}
 	
-	var query = "INSERT INTO playlists (name, picture , public,owner_id) VALUES (?, ? , ? ,?);  "
+	var query = "INSERT INTO playlists (name, picture , public, owner_id) VALUES (?, ? , ? ,?);  "
 	var values = [name, picture , public , owner_id ]
 	
 	
@@ -74,6 +74,22 @@ exports.getPlaylistById = function(playlistId, callback){
 exports.getPlaylistsByOwnerId = function(id, callback){
 	
 	const query = "SELECT * FROM playlists WHERE owner_id = ? and public = 1"
+	const values = [id]
+	
+	db.all(query, values, function(error, playlists){
+		
+		if(error){
+			callback("Database error.")
+		}else{
+			callback(null, playlists)
+		}
+		
+	})
+}
+
+exports.getPlaylistsByOwnerId_ = function(id, callback){
+	
+	const query = "SELECT * FROM playlists WHERE owner_id = ?"
 	const values = [id]
 	
 	db.all(query, values, function(error, playlists){
